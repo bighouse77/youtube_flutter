@@ -1,29 +1,25 @@
 // ignore_for_file: file_names, deprecated_member_use, prefer_const_literals_to_create_immutables, unused_local_variable, prefer_const_constructors, avoid_print, use_key_in_widget_constructors
-
+// @dart=2.9
 import 'package:flutter/material.dart';
+import 'package:youtube_flutter/CustomSearchDelegate.dart';
 import 'package:youtube_flutter/telas/Biblioteca.dart';
 import 'package:youtube_flutter/telas/EmAlta.dart';
 import 'package:youtube_flutter/telas/Inicio.dart';
 import 'package:youtube_flutter/telas/Inscricao.dart';
 
 class Home extends StatefulWidget {
-  
-
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
   int _indiceAtual = 0;
+  String _resultado = "";
 
   @override
-  Widget build(BuildContext context) {
-    List<Widget> telas = [
-      Inicio(),
-      EmAlta(),
-      Inscricao(),
-      Biblioteca()
-    ];
+  Widget build(BuildContext context) { 
+
+    List<Widget> telas = [Inicio(_resultado), EmAlta(), Inscricao(), Biblioteca()];
 
     return Scaffold(
       appBar: AppBar(
@@ -44,8 +40,14 @@ class _HomeState extends State<Home> {
           ),
           IconButton(
             icon: const Icon(Icons.search),
-            onPressed: () {
-              print("acao: search");
+            onPressed: () async {
+              // exibir barra de pesquisa!
+              String res = await showSearch(
+                context: context, delegate: CustomSearchDelegate(), 
+              );
+              setState(() {
+                _resultado = res;
+              });
             },
           ),
           IconButton(

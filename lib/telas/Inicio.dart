@@ -4,55 +4,98 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_flutter/model/Video.dart';
 import '../Api.dart';
+import 'package:flutter_youtube/flutter_youtube.dart';
 
 class Inicio extends StatefulWidget {
+  String pesquisa;
+
+  Inicio(this.pesquisa);
+
   @override
   _InicioState createState() => _InicioState();
 }
 
 class _InicioState extends State<Inicio> {
-  _listarVideos() {
+  _listarVideos(String pesquisa) {
     Future<List<Video>> videos;
 
     Api api = Api();
-    return api.pesquisar("");
+    return api.pesquisar(pesquisa);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print("chamado 1 - initState");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print("chamado 2 - didChangeDepencies");
+  }
+
+  @override
+  void didUpdateWidget(covariant Inicio oldWidget) {
+    
+    super.didUpdateWidget(oldWidget);
+    print("chamado 2 - didUpdateWidget");
+  }
+
+  @override
+  void dispose() {
+    
+    super.dispose();
+    print("chamado 4 - dispose");
   }
 
   @override
   Widget build(BuildContext context) {
+    print("chamado 3 - build");
     // não precisa do Scaffold pois onde ele será chamado (telas), já está
     // inserido num Scaffold
     return FutureBuilder<List<Video>>(
-      future: _listarVideos(),
+      future: _listarVideos(widget.pesquisa),
       builder: (contex, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
+
           case ConnectionState.waiting:
             return Center(child: CircularProgressIndicator());
+
           case ConnectionState.active:
+
           case ConnectionState.done:
             if (snapshot.hasData) {
               return ListView.separated(
                   itemBuilder: (context, index) {
                     List<Video> videos = snapshot.data;
                     Video video = videos[index];
-                    return Column(
-                      children: [
-                        Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              // BoxFit.cover pega todo o container
-                              fit: BoxFit.cover,
-                              image: NetworkImage(video.imagem)
-                            ),
-                          ) 
-                        ),
-                        ListTile(
-                          title: Text(video.titulo),
-                          subtitle: Text(video.descricao),
-                        )
-                      ],
+
+                    return GestureDetector(
+                      onTap: () {
+                        FlutterYoutube.playYoutubeVideoById(
+                            apiKey: CHAVE_YOUTUBE_API,
+                            videoId: video.id,
+                            autoPlay: true,
+                            fullScreen: true);
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                              height: 200,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    // BoxFit.cover pega todo o container
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(video.imagem)),
+                              )),
+                          ListTile(
+                            title: Text(video.titulo),
+                            subtitle: Text(video.descricao),
+                          )
+                        ],
+                      ),
                     );
                   },
                   // permite que você coloque um separador (linha, divider)

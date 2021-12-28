@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
-
+// @dart=2.9
 class Video {
-  String? id;
-  String? titulo;
-  String? descricao;
-  String? imagem;
-  String? canal;
+  String id;
+  String titulo;
+  String descricao;
+  String imagem;
+  String canal;
 
   Video({this.id, this.titulo, this.descricao, this.imagem, this.canal});
 
