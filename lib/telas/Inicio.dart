@@ -1,4 +1,5 @@
-// ignore_for_file: file_names, deprecated_member_use, prefer_const_literals_to_create_immutables, unused_local_variable, prefer_const_constructors, avoid_unnecessary_containers, import_of_legacy_library_into_null_safe, use_key_in_widget_constructors
+// ignore_for_file: file_names, deprecated_member_use, prefer_const_literals_to_create_immutables, unused_local_variable, prefer_const_constructors, avoid_unnecessary_containers, import_of_legacy_library_into_null_safe, use_key_in_widget_constructors, missing_return
+// @dart=2.9
 
 import 'package:flutter/material.dart';
 import 'package:youtube_flutter/model/Video.dart';
@@ -33,21 +34,36 @@ class _InicioState extends State<Inicio> {
             if (snapshot.hasData) {
               return ListView.separated(
                   itemBuilder: (context, index) {
+                    List<Video> videos = snapshot.data;
+                    Video video = videos[index];
                     return Column(
                       children: [
-                        Text("Teste")
+                        Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              // BoxFit.cover pega todo o container
+                              fit: BoxFit.cover,
+                              image: NetworkImage(video.imagem)
+                            ),
+                          ) 
+                        ),
+                        ListTile(
+                          title: Text(video.titulo),
+                          subtitle: Text(video.descricao),
+                        )
                       ],
                     );
                   },
+                  // permite que você coloque um separador (linha, divider)
                   separatorBuilder: (context, index) => Divider(
                         height: 2,
-                        color: Colors.red,
+                        color: Colors.grey,
                       ),
-                  itemCount: snapshot.data!.length);
+                  itemCount: snapshot.data.length);
             } else {
               return Center(child: Text("Nenhum dado a ser exibido!"));
             }
-
         }
       },
     );

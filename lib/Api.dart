@@ -3,7 +3,7 @@
 
 
 /* 
-  *************************** A T E N Ç Ã O ************************************
+  ***************************** A T E N Ç Ã O **********************************
   Comentário abaixo, anula completamente o NULL SAFETY. Ele será necessário
   em alguns momentos.
 
@@ -19,7 +19,7 @@ import 'dart:convert';
 import 'package:youtube_flutter/model/Video.dart';
 
 const CHAVE_YOUTUBE_API = "AIzaSyC2xWVp2z-d0mFNRWBGYuPEybgdFMn0dV8";
-const ID_CANAL = "UCYzp8-P162Em-3uZnCuGJOg";
+const ID_CANAL = "UC8XGh6aU2yZf7AbnfPzMczA";
 const URL_BASE = "https://www.googleapis.com/youtube/v3/";
 
 class Api {
