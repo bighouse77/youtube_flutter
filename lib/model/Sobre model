@@ -1,0 +1,28 @@
+Classes modelos, são os objetos que serão instanciados no app.
+
+No caso, foi o vídeo. Um vídeo possui:
+
+    - Título
+    - Descrição
+    - Canal
+    - etc...
+
+Isso tudo deve ser instanciado de acordo com a documentação da API. No caso,
+foi utilizado a API do YouTube.
+
+Classes modelos podem ser:
+
+    - Usuários
+        Poderiam ter:
+            - Nome
+            - CPF
+            - Cidade
+            - etc...
+    - Clientes
+        Poderiam ter:
+            - CNPJ
+            - Razão Social
+            - IE
+            - etc..
+
+Todo objeto que irá 'modelar' o app, entra na classe modelo.

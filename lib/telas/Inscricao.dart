@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 
 class Inscricao extends StatefulWidget {
-  const Inscricao({ Key? key }) : super(key: key);
 
   @override
   _InscricaoState createState() => _InscricaoState();

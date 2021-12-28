@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, deprecated_member_use, prefer_const_literals_to_create_immutables, unused_local_variable, prefer_const_constructors
+// ignore_for_file: file_names, deprecated_member_use, prefer_const_literals_to_create_immutables, unused_local_variable, prefer_const_constructors, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:youtube_flutter/telas/Biblioteca.dart';
@@ -7,7 +7,7 @@ import 'package:youtube_flutter/telas/Inicio.dart';
 import 'package:youtube_flutter/telas/Inscricao.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  
 
   @override
   _HomeState createState() => _HomeState();
@@ -56,7 +56,10 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: telas[_indiceAtual],
+      body: Container(
+        padding: EdgeInsets.all(16),
+        child: telas[_indiceAtual],
+      ),
       // icones na parte inferior
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _indiceAtual,

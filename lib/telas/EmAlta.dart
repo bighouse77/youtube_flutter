@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 
 class EmAlta extends StatefulWidget {
-  const EmAlta({ Key? key }) : super(key: key);
 
   @override
   _EmAltaState createState() => _EmAltaState();
