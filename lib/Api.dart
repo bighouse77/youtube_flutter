@@ -1,4 +1,16 @@
-// ignore_for_file: file_names, constant_identifier_names
+// ignore_for_file: file_names, constant_identifier_names, missing_return
+
+
+
+/* 
+  *************************** A T E N Ç Ã O ************************************
+  Comentário abaixo, anula completamente o NULL SAFETY. Ele será necessário
+  em alguns momentos.
+
+                        Comentario: @dart=2.9
+*/
+// @dart=2.9
+
 
 
 import 'package:http/http.dart' as http;
